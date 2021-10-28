@@ -58,12 +58,14 @@
             }
         }
 
-        $('<p>' + rndNums + '<p>').appendTo("#Arr");
+        $('<p>' + rndNums + '<p>').appendTo("#Arr"); //Lägger till arrayen i rubriken
         $('<p>' + rndNums.sort(function (a, b) {
             return a - b;
-        }) + '<p>').appendTo("#Arr2");
+        }) + '<p>').appendTo("#Arr2"); //Sorterar arrayen och lägger till den 
 
+        //Körs när dokumentet har laddat in. 
         $(document).ready(function () {
+            //Körs när man submittar formen.
             $("#form").submit(function () {
                 if ($("#username").val() == "") {
                     alert("Username invalid.");
