@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="jqueryvalidering.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Forms</title>
+</head>
+
+<body>
+    <div class="Array">
+        <h1 id="Arr"></h1>
+        <h1 id="Arr2"></h1>
+    </div>
+
+    <form id="form">
+        <fieldset>
+            <legend>Personal</legend>
+            <div class="container">
+                <div class="inputDiv">
+                    <label for="password">Password:</label>
+                    <input type="password" name="Password" id="password" />
+                </div>
+
+                <div class="inputDiv">
+                    <label for="username">Username:</label>
+                    <input type="text" name="Username" id="username" />
+                </div>
+
+                <div class="inputDiv">
+                    <label for="PasswordConfirm">Confirm Password:</label>
+                    <input type="password" name="PasswordConfirm" id="PasswordConfirm" />
+                </div>
+
+                <div class="inputDiv">
+                    <label for="email">E-mail:</label>
+                    <input type="text" name="E-Mail" id="email" />
+                </div>
+            </div>
+            <div class="containerCheckBox">
+                <label for="termsOfService">I agree to the Terms of Service.</label>
+                <input type="checkbox" class="checkbox" name="termsOfService" id="termsOfService">
+            </div>
+        </fieldset>
+        <input type="submit" name="Submit" value="Submit" class="submit" />
+    </form>
+
+    <script>
+        var rndNums = [];
+
+        while (rndNums.length < 10) {
+            let rnd = Math.floor(Math.random() * 100) + 1;
+            if (!rndNums.includes(rnd)) {
+                rndNums.push(rnd);
+            }
+        }
+
+        $('<p>' + rndNums + '<p>').appendTo("#Arr");
+        $('<p>' + rndNums.sort(function (a, b) {
+            return a - b;
+        }) + '<p>').appendTo("#Arr2");
+
+        $(document).ready(function () {
+            $("#form").submit(function () {
+                if ($("#username").val() == "") {
+                    alert("Username invalid.");
+                } else if ($("#password").val().length < 6 && $("#password").val() != $(
+                        "#passwordConfirm").val()) {
+                    alert("Password invalid.");
+                } else if ((!$("#email").val().includes("@") && !$("#email").val().includes(".")) || $(
+                        "#email").val() == "") {
+                    alert("Email invalid.")
+                } else if ($("#termsOfService").is(":disabled")) {
+                    alert("Check the box.")
+                } else {
+                    window.open("confirmed.html");
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
